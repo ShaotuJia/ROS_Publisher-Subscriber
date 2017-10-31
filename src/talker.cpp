@@ -7,11 +7,9 @@
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
  */
-
+#include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
-
-#include <sstream>
 
 int main(int argc, char **argv) {
 
