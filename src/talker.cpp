@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 	while (ros::ok()) {
 
 		// This is a message object. You stuff it with data, and then publish it.
-		std_msgs::String_ msg;
+		std_msgs::String msg;
 
 		std::stringstream ss;
 		ss << "Hello from talker" << count;
@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
 		ROS_INFO("%s", msg.data.c_str());
 
 		// Publish message
-		chatter_pub.Publisher(msg);
+		chatter_pub.publish(msg);
 
 		ros::spinOnce();
 
