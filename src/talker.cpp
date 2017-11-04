@@ -12,14 +12,14 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "std_srvs/Trigger.h"
-#include "std_srvs/Empty.h"
+#include "beginner_tutorials/Level.h"
+
 
 /**
  *@brief This is the callback function to response calling service
  *@param req The request to service with data-type std_srvs::Trigger
  *@param resp The response from service with data-type std_srvs::Trigger
  */
-
 bool trigger(std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& resp) {
 	std_srvs::Trigger t;
 	t.response.success = true;
@@ -31,6 +31,10 @@ bool trigger(std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& resp)
 	return true;
 }
 
+/**
+ * @brief This is the callback function to register a service that publish five log levels
+ */
+//bool pub_log ()
 int main(int argc, char **argv) {
 
 	// Initialize node name "talker"
