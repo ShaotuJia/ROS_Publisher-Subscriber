@@ -14,7 +14,6 @@
 #include "std_srvs/Trigger.h"
 #include "beginner_tutorials/Level.h"
 
-
 /**
  *@brief This is the callback function to response calling service
  *@param req The request to service with data-type std_srvs::Trigger
@@ -33,8 +32,25 @@ bool trigger(std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& resp)
 
 /**
  * @brief This is the callback function to register a service that publish five log levels
+ * @param req A integer of requesting service
+ * @param resp A bool and string response let user know that service log_level is called
  */
-//bool pub_log ()
+bool pub_log (beginner_tutorials::Level::Request& req, beginner_tutorials::Level::Response& resp) {
+
+	auto i = req.count;
+	ROS_DEBUG_STREAM("counted to " << i);
+	if ((i % 3) == 0) ROS_INFO_STREAM(i << " is divisible by 3");
+	if ((i % 5) == 0) ROS_WARN_STREAM(i << " is divisible by 5");
+	if ((i % 10) == 0) ROS_ERROR_STREAM(i << "is divisible by 10");
+	if ((i % 20) == 0) ROS_FATAL_STREAM(i << " is divisible by 20");
+
+	// Set up response
+	resp.success = true;
+	resp.message = "service log_level has been called";
+
+	return resp.success;
+}
+
 int main(int argc, char **argv) {
 
 	// Initialize node name "talker"
@@ -47,6 +63,11 @@ int main(int argc, char **argv) {
 	 * Register service talker_service at ROS master to response string
 	 */
 	ros::ServiceServer server = n.advertiseService("Talker_service", &trigger);
+
+	/**
+	 * Register service log_level at ROS master to publish five level logs
+	 */
+	ros::ServiceServer log_server = n.advertiseService("log_level", &pub_log);
 
 
 	/**
