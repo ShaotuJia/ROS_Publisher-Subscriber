@@ -1,6 +1,7 @@
 /*
  * @file talk.cpp
  * @brief This is the publisher to send message to  topic std_msgs/string
+ * and advertise service to change the base output string
  * @author Shaotu Jia
  * @copyright Copyright (C) 2007 Free Software Foundation, Inc.
  * @details GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007
@@ -10,6 +11,25 @@
 #include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
+#include "std_srvs/Trigger.h"
+#include "std_srvs/Empty.h"
+
+/**
+ *@brief This is the callback function to response calling service
+ *@param req The request to service with data-type std_srvs::Trigger
+ *@param resp The response from service with data-type std_srvs::Trigger
+ */
+
+bool trigger(std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& resp) {
+	std_srvs::Trigger t;
+	t.response.success = true;
+	t.response.message = "You are triggering the talker_service";
+	resp.success = t.response.success;
+	resp.message = t.response.message;
+
+	ROS_INFO("%s", t.response.message.c_str());
+	return true;
+}
 
 int main(int argc, char **argv) {
 
@@ -20,13 +40,19 @@ int main(int argc, char **argv) {
 	ros::NodeHandle n;
 
 	/**
+	 * Register service talker_service at ROS master to response string
+	 */
+	ros::ServiceServer server = n.advertiseService("Talker_service", &trigger);
+
+
+	/**
 	 * Register the node as publisher at ROS master to topic std_msgs::String
 	 * The topic name is "chatter" and queue size 1000
 	 */
 	ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
 	// Set up the loop rate as 10Hz
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(1);
 
 	/**
 	 * A count of how many messages we have sent. This is used to create
