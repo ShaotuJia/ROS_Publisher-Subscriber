@@ -37,6 +37,6 @@ This tutorial is to familiarize how nodes communicate to others via topics. The 
   ```
 - rosservice /log_level: request count number to publish different logger_level by check whether count number is the muliple of 3, 5, 10, 20. e.g: count = 600
   ```
-  roservice call /log_level "count: 600"
+  rosservice call /log_level "count: 600"
   ```
 - shut down nodes by Ctrl + C when you want to 
