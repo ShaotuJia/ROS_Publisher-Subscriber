@@ -19,9 +19,9 @@ This tutorial is to familiarize how nodes communicate to others via topics. The 
   ```
   catkin_make
   ```
-- open three new temininals and source every opened terminal
+- open three new temininals and source every opened termininal
   ```
-  source beginner_tutorials/devel/setup.sh
+  source beginner_tutorials/devel/setup.bash
   ```
 - run node talker and listener from launch file
   ```
