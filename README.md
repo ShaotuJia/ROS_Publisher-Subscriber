@@ -1,14 +1,14 @@
 # beginner_tutorials
 
 ## Overview
-This Week10 assignment adds addtional features in last week assignment to familiarize ROS launch file, service, parameter, and logger_level. There are two node talker and listener. Node talker publishes one topic 'chatter', two service '/Talker_service' and '/log_level'; recieve param Hz from parameter server. Node listener publishes param Hz to parameter server and has a client for service '/log_level'. 
+This Week10 assignment adds additional features in last week assignment to familiarize ROS launch file, service, parameter, and logger_level. There are two node talker and listener. Node talker publishes one topic 'chatter,' two services '/Talker_service' and '/log_level'; receive param Hz from parameter server. Node listener publishes param Hz to parameter server and has a client for service '/log_level.' 
 ## System Requirements
 - Ubunut 16.04
 - GitHub
 - ROS Kinetic
 - catkin
 ## Build/Run
-- dependences: roscpp std_msgs message_generation
+- dependences: roscpp, std_msgs, message_generation
 
 - clone repo to your catkin workspace: ~/catkin_ws/src
   ```
