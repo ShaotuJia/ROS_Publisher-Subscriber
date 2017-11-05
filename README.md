@@ -23,16 +23,20 @@ This tutorial is to familiarize how nodes communicate to others via topics. The 
   ```
   source beginner_tutorials/devel/setup.sh
   ```
-- start ROS master on one terminal
+- run node talker and listener from launch file
   ```
-  roscore
+  roslaunch beginner_tutorials talker_listener.launch
   ```
-- open node talker on one terminal
+- change the value of param Hz in talker_listener.launch to get different publishing frequency from node talker.e.g 
   ```
-  rosrun beginner_tutorials talker
+  <param name="Hz" value="20" />
   ```
-- open node listener on one terminal
+- rosservice /Talker_service: return a string and bool to show that you are calling this service
   ```
-  rosrun beginner_tutorials listener
+  rosservice call /Talker_service
+  ```
+- rosservice /log_level: request count number to publish different logger_level by check whether count number is the muliple of 3, 5, 10, 20. e.g: count = 600
+  ```
+  roservice call /log_level "count: 600"
   ```
 - shut down nodes by Ctrl + C when you want to 
