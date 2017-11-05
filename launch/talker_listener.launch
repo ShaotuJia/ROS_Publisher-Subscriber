@@ -8,6 +8,8 @@
  output="screen"
 />
 
+<param name="Hz" value="10" />
+
 <node
  name="talker"
  pkg="beginner_tutorials"
