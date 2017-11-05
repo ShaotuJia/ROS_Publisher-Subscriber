@@ -48,6 +48,9 @@ int main(int argc, char **argv) {
 		ROS_ERROR_STREAM("Failed to call log_level");
 	}
 
+	// set parameter Hz for frequency of publishing and receive message
+	ros::param::set("Hz", 0.5);
+
 	// subscribe topic std_msgs/String
 	ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
 

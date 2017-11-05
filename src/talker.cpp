@@ -76,8 +76,12 @@ int main(int argc, char **argv) {
 	 */
 	ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 
+	// Obtain frequency from parameter server
+	auto freq = 0;
+	n.param("Hz", freq, 1);
+
 	// Set up the loop rate as 10Hz
-	ros::Rate loop_rate(1);
+	ros::Rate loop_rate(freq);
 
 	/**
 	 * A count of how many messages we have sent. This is used to create
