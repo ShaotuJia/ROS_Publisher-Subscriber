@@ -12,29 +12,33 @@
 #include "std_msgs/String.h"
 #include "beginner_tutorials/Level.h"
 
-// global variable
-int listener_count = 0;
 
-// A function receive messages over the ROS system
+int listener_count = 0;	///< global variable to count how many message received
+
+/**
+ * @brief This is a function to receive messages over the ROS system
+ * @param msg A string of type std_msgs
+ */
 void chatterCallback(const std_msgs::String::ConstPtr& msg) {
 	// post ROS_INFO
 	ROS_INFO("I heard from talker: [%s]", msg->data.c_str());
 
-	//increment listener_count
-	listener_count ++;
+	// increment listener_count
+	listener_count++;
 }
 
 int main(int argc, char **argv) {
-	// Initialize ROS node listener
-	ros::init(argc, argv, "listener");
 
-	// Create nodehandle
-	ros::NodeHandle n;
+	ros::init(argc, argv, "listener"); ///< Initialize ROS node listener
 
-	// Create a client object for log_level service
+	ros::NodeHandle n;	///< Create Nodehandle
+
+	/**
+	 * Create a client object for log_level service
+	 */
 	ros::ServiceClient logClient = n.serviceClient<beginner_tutorials::Level>("log_level");
-	beginner_tutorials::Level::Request req;
-	beginner_tutorials::Level::Response resp;
+	beginner_tutorials::Level::Request req;		///< a variable for service request
+	beginner_tutorials::Level::Response resp;	///< a variable for service response
 
 	// set up value for req
 	req.count = listener_count;

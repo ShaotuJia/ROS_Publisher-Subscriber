@@ -18,6 +18,7 @@
  *@brief This is the callback function to response calling service
  *@param req The request to service with data-type std_srvs::Trigger
  *@param resp The response from service with data-type std_srvs::Trigger
+ *@return bool
  */
 bool trigger(std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& resp) {
 	std_srvs::Trigger t;
@@ -34,8 +35,9 @@ bool trigger(std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& resp)
  * @brief This is the callback function to register a service that publish five log levels
  * @param req A integer of requesting service
  * @param resp A bool and string response let user know that service log_level is called
+ * @return bool
  */
-bool pub_log (beginner_tutorials::Level::Request& req, beginner_tutorials::Level::Response& resp) {
+bool pub_log(beginner_tutorials::Level::Request& req, beginner_tutorials::Level::Response& resp) {
 
 	auto i = req.count;
 	ROS_DEBUG_STREAM("counted to " << i);
@@ -53,11 +55,10 @@ bool pub_log (beginner_tutorials::Level::Request& req, beginner_tutorials::Level
 
 int main(int argc, char **argv) {
 
-	// Initialize node name "talker"
-	ros::init(argc, argv, "talker");
 
-	// Create NodeHandle n;
-	ros::NodeHandle n;
+	ros::init(argc, argv, "talker");	///< Initialize node name "talker"
+
+	ros::NodeHandle n;	///< Create NodeHandle n;
 
 	/**
 	 * Register service talker_service at ROS master to response string
@@ -88,6 +89,10 @@ int main(int argc, char **argv) {
 	 * a unique string for each message
 	 */
 	int count = 0;
+
+	/**
+	 * A while loop to send message to topic chatter
+	 */
 	while (ros::ok()) {
 
 		// This is a message object. You stuff it with data, and then publish it.
