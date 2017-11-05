@@ -23,7 +23,7 @@
 bool trigger(std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& resp) {
 	std_srvs::Trigger t;
 	t.response.success = true;
-	t.response.message = "You are triggering the talker_service";
+	t.response.message = "You are triggering the Talker_service";
 	resp.success = t.response.success;
 	resp.message = t.response.message;
 
