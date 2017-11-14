@@ -10,6 +10,7 @@
  */
 #include <sstream>
 #include "ros/ros.h"
+#include "tf/transform_broadcaster.h"
 #include "std_msgs/String.h"
 #include "std_srvs/Trigger.h"
 #include "beginner_tutorials/Level.h"
@@ -53,6 +54,17 @@ bool pub_log(beginner_tutorials::Level::Request& req, beginner_tutorials::Level:
 	return resp.success;
 }
 
+/**
+ * @brief This is a function to set up new frame /talk based on frame /world
+ * @param x the translation in x-axis
+ * @param y the translation in y-axis
+ * @param z the translation in z-axis
+ * @param R the Roll rotation
+ * @param P the Pitch rotation
+ * @param Y the Yaw rotation
+ */
+
+
 int main(int argc, char **argv) {
 
 
@@ -80,6 +92,11 @@ int main(int argc, char **argv) {
 	// Obtain frequency from parameter server
 	auto freq = 0;
 	n.param("Hz", freq, 1);
+
+	// create a TransformBroadcaster object to send transformations
+	tf::TransformBroadcaster br;
+
+	tf::Transform transform;
 
 	// Set up the loop rate as 10Hz
 	ros::Rate loop_rate(freq);
@@ -109,9 +126,16 @@ int main(int argc, char **argv) {
 
 		ros::spinOnce();
 
+		// Publish transform to /tf topic
+		transform.setOrigin( tf::Vector3(1.0, 2.0, 8.0) );
+		transform.setRotation( tf::Quaternion(1, 2, 3) );
+		br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
+
 		loop_rate.sleep();
 		++count;
 	}
+
+
 
 	return 0;
 }
