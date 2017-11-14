@@ -1,0 +1,21 @@
+<launch>
+
+<node
+ name="listener"
+ pkg="beginner_tutorials"
+ type="listener"
+ launch-prefix="xterm -e"
+ output="screen"
+/>
+
+<param name="Hz" value="10" />
+
+<node
+ name="talker"
+ pkg="beginner_tutorials"
+ type="talker"
+ launch-prefix="xterm -e"
+ output="screen"
+/>
+
+</launch>
