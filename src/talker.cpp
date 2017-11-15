@@ -54,16 +54,6 @@ bool pub_log(beginner_tutorials::Level::Request& req, beginner_tutorials::Level:
 	return resp.success;
 }
 
-/**
- * @brief This is a function to set up new frame /talk based on frame /world
- * @param x the translation in x-axis
- * @param y the translation in y-axis
- * @param z the translation in z-axis
- * @param R the Roll rotation
- * @param P the Pitch rotation
- * @param Y the Yaw rotation
- */
-
 
 int main(int argc, char **argv) {
 

@@ -18,4 +18,12 @@
  output="screen"
 />
 
+<node
+ name="chatter_record"
+ pkg="rosbag"
+ type="record"
+ args="-O chatter.bag --duration=15 /chatter"
+/>
+ 
+
 </launch>
