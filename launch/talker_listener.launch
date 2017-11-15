@@ -10,6 +10,8 @@
 
 <param name="Hz" value="10" />
 
+<arg name="baging" default="1"/>
+
 <node
  name="talker"
  pkg="beginner_tutorials"
@@ -23,6 +25,7 @@
  pkg="rosbag"
  type="record"
  args="-O chatter.bag --duration=15 /chatter"
+ if="$(arg baging)"
 />
  
 
