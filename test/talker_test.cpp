@@ -1,6 +1,6 @@
 /*
  * @file talker_test.cpp
- * @brief This rostest is to test service, and TF broadcast
+ * @brief This rostest is to test the functions(service, publishing)
  * in node talker
  * @author Shaotu Jia
  * @copyright Copyright (C) 2007 Free Software Foundation, Inc.
@@ -16,40 +16,23 @@
 #include "std_msgs/String.h"
 #include "beginner_tutorials/Level.h"
 
+// initialize a shared_ptr for NodeHandle for each test unit.
 std::shared_ptr<ros::NodeHandle> nh;
 
+/**
+ * @brief This unit test is to check whether the log_level of node talker exists
+ */
 TEST(TESTTalker, log_level_Service ) {
-
+	// waiting for service before executing following steps
 	ros::service::waitForService("log_level");
+	// create a client for service
 	ros::ServiceClient logClient = nh->serviceClient<beginner_tutorials::Level>("log_level");
+	// if the service exist within 10s, the varibale exists will be true, others will be false
 	bool exists(logClient.waitForExistence(ros::Duration(10)));
+	// check whether exists is true
 	EXPECT_TRUE(exists);
 }
 
-
-TEST(TestTalker, tf_transform) {
-	  tf::TransformListener listener;
-
-	  ros::Rate rate(10.0);
-	  while (nh->ok()) {
-	    tf::StampedTransform transform;
-	    try {
-	      listener.lookupTransform("world", "talk",
-	                               ros::Time(0), transform);
-	    }
-	    catch (tf::TransformException ex) {
-	      ROS_ERROR("%s",ex.what());
-	      ros::Duration(1.0).sleep();
-	    }
-
-	    EXPECT_EQ(transform.getOrigin().x(), 1.0);
-	    EXPECT_EQ(transform.getOrigin().y(), 2.0);
-	    EXPECT_EQ(transform.getOrigin().z(), 8.0);
-
-	    rate.sleep();
-	  }
-
-}
 int main(int argc, char **argv) {
   ros::init(argc, argv, "talker_test");
   nh.reset(new ros::NodeHandle);

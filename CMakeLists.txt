@@ -217,12 +217,12 @@ if(CATKIN_ENABLE_TESTING)
   talker_test
   ${catkin_LIBRARIES}
   )
-  add_dependencies(
-  talker_test
-  talker
-  ${PROJECT_NAME}_generate_messages_cpp
-  ${catkin_EXPORTED_TARGETS}
-  )
+#  add_dependencies(
+#  talker_test
+#  talker
+#  ${PROJECT_NAME}_generate_messages_cpp
+#  ${catkin_EXPORTED_TARGETS}
+#  )
 endif()
 
 
