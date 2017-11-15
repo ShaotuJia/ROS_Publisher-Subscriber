@@ -8,7 +8,6 @@
  * Everyone is permitted to copy and distribute verbatim copies
  * of this license document, but changing it is not allowed.
  */
-#include <memory>
 #include <ros/ros.h>
 #include <ros/topic.h>
 #include <ros/service_client.h>
@@ -34,11 +33,11 @@ TEST(TestTalker, tf_transform) {
 	  ros::Rate rate(10.0);
 	  while (nh->ok()) {
 	    tf::StampedTransform transform;
-	    try{
+	    try {
 	      listener.lookupTransform("world", "talk",
 	                               ros::Time(0), transform);
 	    }
-	    catch (tf::TransformException ex){
+	    catch (tf::TransformException ex) {
 	      ROS_ERROR("%s",ex.what());
 	      ros::Duration(1.0).sleep();
 	    }

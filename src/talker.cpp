@@ -117,15 +117,12 @@ int main(int argc, char **argv) {
 		ros::spinOnce();
 
 		// Publish transform to /tf topic
-		transform.setOrigin( tf::Vector3(1.0, 2.0, 8.0) );
-		transform.setRotation( tf::Quaternion(1, 2, 3) );
+		transform.setOrigin(tf::Vector3(1.0, 2.0, 8.0));
+		transform.setRotation(tf::Quaternion(1, 2, 3));
 		br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "talk"));
 
 		loop_rate.sleep();
 		++count;
 	}
-
-
-
 	return 0;
 }
