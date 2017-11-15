@@ -1,7 +1,7 @@
 # beginner_tutorials
 
 ## Overview
-This Week10 assignment adds additional features in last week assignment to familiarize ROS launch file, service, parameter, and logger_level. There are two node talker and listener. Node talker publishes one topic 'chatter,' two services '/Talker_service' and '/log_level'; receive param Hz from parameter server. Node listener publishes param Hz to parameter server and has a client for service '/log_level.' 
+This Week11 assignment adds additional features in last week assignment to familiarize tf package, rostest, and rosbag. The Talker node to broadcast a tf frame called /talk with parent /world. The tf tree has been viewed and saved as PDF. Gtest/rostest has been used to test the published tf transform and log_leve service. The topic chatter has been recorded using rosbag for 15s. And Listener node can receive the message from the rosbag record. 
 ## System Requirements
 - Ubunut 16.04
 - GitHub
@@ -39,3 +39,13 @@ This Week10 assignment adds additional features in last week assignment to famil
   rosservice call /log_level "count: 600"
   ```
 - shut down nodes by Ctrl + C when you want to 
+### Week_11
+- run node talker, listener, and record topic chatter using launch file 
+  ```
+  roslaunch beginner_tutorials talker_listener.launch 
+  ```
+- run node talker and listener without recording topic chatter using launch file
+  ```
+  roslaunch beginner_tutorials talker_listener.launch baging:=0
+  ```
+
