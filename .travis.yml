@@ -1,19 +1,28 @@
-sudo: true
-dist: xenial
-language: generic
-
+# This config file for Travis CI utilizes ros-industrial/industrial_ci package.
+# For more info for the package, see https://github.com/ros-industrial/industrial_ci/blob/master/README.rst
+sudo: required 
+dist: trusty 
+language: cpp 
 compiler:
   - gcc
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+#    recipients:
+#      - shaotu.jia
+env:
+  matrix:
+    - USE_DEB=true  ROS_DISTRO="kinetic" ROS_REPOSITORY_PATH=http://packages.ros.org/ros/ubuntu
+    - USE_DEB=true  ROS_DISTRO="kinetic" ROS_REPOSITORY_PATH=http://packages.ros.org/ros-shadow-fixed/ubuntu
 
-addons:
-  apt:
-    packages:
-      - cmake
-
+matrix:
+  allow_failures:
+    - env: USE_DEB=true  ROS_DISTRO="kinetic"   ROS_REPOSITORY_PATH=http://packages.ros.org/ros/ubuntu
+    - env: USE_DEB=true  ROS_DISTRO="kinetic"   ROS_REPOSITORY_PATH=http://packages.ros.org/ros-shadow-fixed/ubuntu
 install:
-    - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu trusty main" > /etc/apt/sources.list.d/ros-latest.list'
-    - sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-    - sudo apt-get update
-    - sudo apt-get -y install ros-kinetic-ros-base 
-
+  - git clone https://github.com/ros-industrial/industrial_ci.git .ci_config
+script: 
+  - source .ci_config/travis.sh
+#  - source ./travis.sh  # Enable this when you have a package-local script
 
