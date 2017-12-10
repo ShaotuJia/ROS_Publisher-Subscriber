@@ -1,6 +1,6 @@
 sudo: true
 dist: xenial
-language: cpp
+language: generic
 
 compiler:
   - gcc

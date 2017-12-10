@@ -33,6 +33,10 @@ TEST(TESTTalker, log_level_Service ) {
 	EXPECT_TRUE(exists);
 }
 
+TEST(TESTtf, transform) {
+
+}
+
 int main(int argc, char **argv) {
   ros::init(argc, argv, "talker_test");
   nh.reset(new ros::NodeHandle);
