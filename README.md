@@ -1,5 +1,7 @@
 # beginner_tutorials
-
+[![Build Status](https://travis-ci.org/ShaotuJia/beginner_tutorials.svg?branch=master)](https://travis-ci.org/ShaotuJia/beginner_tutorials)
+[![Coverage Status](https://coveralls.io/repos/github/ShaotuJia/beginner_tutorials/badge.svg?branch=master)](https://coveralls.io/github/ShaotuJia/beginner_tutorials?branch=master)
+---
 ## Overview
 This Week11 assignment adds additional features in last week assignment to familiarize tf package, rostest, and rosbag. The Talker node to broadcast a tf frame called /talk with parent /world. The tf tree has been viewed and saved as PDF. Gtest/rostest has been used to test the published tf transform and log_leve service. The topic chatter has been recorded using rosbag for 15s. And Listener node can receive the message from the rosbag record. 
 ## System Requirements
