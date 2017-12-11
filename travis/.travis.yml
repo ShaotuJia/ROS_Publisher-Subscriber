@@ -77,3 +77,11 @@ after_success:
   - lcov --remove coverage.info '/opt/*' '/usr/*' '*/devel/*' '*test_*' '*_test*' --output-file coverage.info
   - lcov --list coverage.info
   - coveralls-lcov coverage.info
+
+
+after_success:
+  - cd /root/catkin_ws/build
+  - lcov --directory . --capture --output-file coverage.info
+  - lcov --remove coverage.info '/opt/*' '/usr/*' '*/devel/*' '*test_*' '*_test*' --output-file coverage.info
+  - lcov --list coverage.info
+  - coveralls-lcov coverage.info
