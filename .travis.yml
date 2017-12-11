@@ -22,15 +22,15 @@ matrix:
     - env: USE_DEB=true  ROS_DISTRO="kinetic"   ROS_REPOSITORY_PATH=http://packages.ros.org/ros-shadow-fixed/ubuntu
 install:
   - git clone https://github.com/ros-industrial/industrial_ci.git .ci_config
-  - sudo gem install coveralls-lcov
+  - RUN gem install coveralls-lcov
 script: 
   - source .ci_config/travis.sh
 #  - source ./travis.sh  # Enable this when you have a package-local script
 
 # Generate code coverage, other artifacts
 # ---------------------------------------
-  - sudo cd /root/catkin_ws/build
-  - sudo lcov --directory . --capture --output-file coverage.info
-  - sudo lcov --remove coverage.info '/opt/*' '/usr/*' '*/devel/*' '*test_*' '*_test*' --output-file coverage.info
-  - sudo lcov --list coverage.info
-  - sudo coveralls-lcov coverage.info
+  - WORKDIR /root/catkin_ws/build
+  - RUN lcov --directory . --capture --output-file coverage.info
+  - RUN lcov --remove coverage.info '/opt/*' '/usr/*' '*/devel/*' '*test_*' '*_test*' --output-file coverage.info
+  - RUN lcov --list coverage.info
+  - RUN coveralls-lcov coverage.info
