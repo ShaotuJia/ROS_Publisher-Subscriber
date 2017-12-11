@@ -29,8 +29,8 @@ script:
 
 # Generate code coverage, other artifacts
 # ---------------------------------------
-  - cd /root/catkin_ws/build
-  - lcov --directory . --capture --output-file coverage.info
-  - lcov --remove coverage.info '/opt/*' '/usr/*' '*/devel/*' '*test_*' '*_test*' --output-file coverage.info
-  - lcov --list coverage.info
-  - coveralls-lcov coverage.info
+  - sudo cd /root/catkin_ws/build
+  - sudo lcov --directory . --capture --output-file coverage.info
+  - sudo lcov --remove coverage.info '/opt/*' '/usr/*' '*/devel/*' '*test_*' '*_test*' --output-file coverage.info
+  - sudo lcov --list coverage.info
+  - sudo coveralls-lcov coverage.info
